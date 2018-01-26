@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import {classToPlain, classToClass, plainToClass} from "../../src/index";
-import {defaultMetadataStorage} from "../../src/storage";
+import {getMetadataStorage} from "../../src/storage";
 import {TransformOperationExecutor} from "../../src/TransformOperationExecutor";
 import {assert} from "chai";
 import * as sinon from "sinon";
@@ -8,7 +8,7 @@ import * as sinon from "sinon";
 describe("circular reference problem", () => {
 
     it("should skip circular reference objects", () => {
-        defaultMetadataStorage.clear();
+        getMetadataStorage().clear();
 
         class Photo {
             id: number;
@@ -57,7 +57,7 @@ describe("circular reference problem", () => {
     });
 
     it("should not skip circular reference objects, but handle it correctly in classToClass operation", () => {
-        defaultMetadataStorage.clear();
+        getMetadataStorage().clear();
 
         class Photo {
             id: number;

@@ -1,12 +1,12 @@
 import {ClassTransformer} from "./ClassTransformer";
-import {defaultMetadataStorage} from "./storage";
 import {TypeMetadata} from "./metadata/TypeMetadata";
 import {ExposeMetadata} from "./metadata/ExposeMetadata";
 import {ExposeOptions, ExcludeOptions, TypeOptions, TransformOptions} from "./metadata/ExposeExcludeOptions";
 import {ExcludeMetadata} from "./metadata/ExcludeMetadata";
 import {TransformMetadata} from "./metadata/TransformMetadata";
 import {ClassTransformOptions} from "./ClassTransformOptions";
-import {TransformationType} from "./TransformOperationExecutor";
+import { getMetadataStorage } from "./storage";
+import { TransformationType } from "./TransformationType";
 
 /**
  * Defines a custom logic for value transformation.
@@ -14,7 +14,7 @@ import {TransformationType} from "./TransformOperationExecutor";
 export function Transform(transformFn: (value: any, obj: any, transformationType: TransformationType) => any, options?: TransformOptions) {
     return function(target: any, key: string) {
         const metadata = new TransformMetadata(target.constructor, key, transformFn, options);
-        defaultMetadataStorage.addTransformMetadata(metadata);
+        getMetadataStorage().addTransformMetadata(metadata);
     };
 }
 
@@ -25,7 +25,7 @@ export function Type(typeFunction?: (type?: TypeOptions) => Function) {
     return function(target: any, key: string) {
         const type = (Reflect as any).getMetadata("design:type", target, key);
         const metadata = new TypeMetadata(target.constructor, key, type, typeFunction);
-        defaultMetadataStorage.addTypeMetadata(metadata);
+        getMetadataStorage().addTypeMetadata(metadata);
     };
 }
 
@@ -37,7 +37,7 @@ export function Type(typeFunction?: (type?: TypeOptions) => Function) {
 export function Expose(options?: ExposeOptions) {
     return function(object: Object|Function, propertyName?: string) {
         const metadata = new ExposeMetadata(object instanceof Function ? object : object.constructor, propertyName, options || {});
-        defaultMetadataStorage.addExposeMetadata(metadata);
+        getMetadataStorage().addExposeMetadata(metadata);
     };
 }
 
@@ -49,7 +49,7 @@ export function Expose(options?: ExposeOptions) {
 export function Exclude(options?: ExcludeOptions) {
     return function(object: Object|Function, propertyName?: string) {
         const metadata = new ExcludeMetadata(object instanceof Function ? object : object.constructor, propertyName, options || {});
-        defaultMetadataStorage.addExcludeMetadata(metadata);
+        getMetadataStorage().addExcludeMetadata(metadata);
     };
 }
 

@@ -1,12 +1,12 @@
 import "reflect-metadata";
 import {classToPlain} from "../../src/index";
-import {defaultMetadataStorage} from "../../src/storage";
+import {getMetadataStorage} from "../../src/storage";
 import {Exclude, Expose} from "../../src/decorators";
 
 describe("ignoring specific decorators", () => {
 
     it("when ignoreDecorators is set to true it should ignore all decorators", () => {
-        defaultMetadataStorage.clear();
+        getMetadataStorage().clear();
 
         class User {
 

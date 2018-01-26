@@ -1,13 +1,22 @@
 import {TypeMetadata} from "./TypeMetadata";
 import {ExposeMetadata} from "./ExposeMetadata";
 import {ExcludeMetadata} from "./ExcludeMetadata";
-import {TransformationType} from "../TransformOperationExecutor";
 import {TransformMetadata} from "./TransformMetadata";
+import {PACKAGE_KEY} from "../constants";
+import { TransformationType } from "../TransformationType";
 
 /**
  * Storage all library metadata.
  */
 export class MetadataStorage {
+
+    protected static _uniqueKey = `${PACKAGE_KEY}/MetadataStorage`;
+
+    static get uniqueKey() {
+
+        return this._uniqueKey;
+
+    }
 
     // -------------------------------------------------------------------------
     // Properties
@@ -17,6 +26,12 @@ export class MetadataStorage {
     private _transformMetadatas: TransformMetadata[] = [];
     private _exposeMetadatas: ExposeMetadata[] = [];
     private _excludeMetadatas: ExcludeMetadata[] = [];
+
+    constructor() {
+
+        console.warn(`CLASS-TRANSFORMER: new MetadataStorage()`);
+
+    }
 
     // -------------------------------------------------------------------------
     // Adder Methods

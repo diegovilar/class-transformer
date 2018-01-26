@@ -9,7 +9,10 @@
         "experimentalDecorators": true,
         "sourceMap": true,
         "noImplicitAny": true,
-        "declaration": true
+        "declaration": true,
+        "lib": [
+          "es6"
+        ]
     },
     "exclude": [
         "build",

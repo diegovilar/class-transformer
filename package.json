@@ -1,20 +1,30 @@
 {
-  "name": "class-transformer",
-  "version": "0.1.8",
+  "name": "@trese/class-transformer",
+  "private": true,
+  "version": "0.1.9-rc.2",
   "description": "Proper decorator-based transformation / serialization / deserialization of plain javascript objects to class constructors",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "private": true,
   "author": {
     "name": "Umed Khudoiberdiev",
     "email": "pleerock.me@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Diego Vilar",
+      "email": "diegovilar@gmail.com",
+      "url": "https://github.com/diegovilar"
+    }
+  ],
+  "publishConfig": {
+    "registry": "https://npm.tre-se.gov.br"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pleerock/class-transformer.git"
+    "url": "https://github.com/diegovilar/class-transformer.git"
   },
   "bugs": {
-    "url": "https://github.com/pleerock/class-transformer/issues"
+    "url": "https://github.com/diegovilar/class-transformer/issues"
   },
   "tags": [
     "serialization",
@@ -26,10 +36,9 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@types/moment": "^2.13.0",
     "@types/chai": "^3.4.34",
-    "@types/es6-shim": "^0.31.32",
     "@types/mocha": "^2.2.33",
+    "@types/moment": "^2.13.0",
     "@types/node": "0.0.2",
     "@types/sinon": "^2.2.2",
     "chai": "^3.4.1",
@@ -60,6 +69,7 @@
   },
   "scripts": {
     "test": "gulp tests",
-    "package": "gulp package"
+    "build": "gulp package",
+    "publishPackage": "gulp publish"
   }
 }
