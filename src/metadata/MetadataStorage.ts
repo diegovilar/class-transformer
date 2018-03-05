@@ -29,7 +29,7 @@ export class MetadataStorage {
 
     constructor() {
 
-        console.warn(`CLASS-TRANSFORMER: new MetadataStorage()`);
+        // console.warn(`CLASS-TRANSFORMER: new MetadataStorage()`);
 
     }
 
